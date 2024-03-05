@@ -1,0 +1,29 @@
+version: '2'
+
+services:
+#  db:
+#    image: 'postgres:16.0-alpine'
+#    container_name: db
+#    restart: always
+#    environment:
+#      - POSTGRES_USER=checkpointuser
+#      - POSTGRES_PASSWORD=checkpointpw
+#      - POSTGRES_DB=database
+#    ports:
+#      - 5432:5432
+  crac-db-sample:
+    container_name: crac-db-sample
+    image: 'tjwatson/crac-db-sample:builder'
+    privileged: true
+    ulimits:
+      nofile: 1024
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/database
+      SPRING_DATASOURCE_USERNAME: checkpointuser
+      SPRING_DATASOURCE_PASSWORD: checkpointpw
+      SPRING_JPA_PROPERTIES_HIBERNATE_TEMP_USE_JDBC_METADATA_DEFAULTS: 'false'
+      SPRING_JPA_HIBERNATE_DDLAUTO: none
+      SPRING_SQL_INIT_MODE: never
+      EXAMPLE_APP_CREATE_USERS: 'false'
+#      FLAG: '-r'
+

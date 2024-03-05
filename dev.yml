@@ -1,8 +1,0 @@
-spring:
-  datasource:
-    hikari:
-      allow-pool-suspension: true
-    url: jdbc:postgresql://localhost:5432/database
-    username: user
-    password: test
-    driver-class-name: org.postgresql.Driver

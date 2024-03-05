@@ -7,8 +7,6 @@ spring:
         - com.zaxxer.hikari.HikariDataSource
   application:
     name: context-demo
-  config:
-    import: file:./dev.yml
   jpa:
     hibernate:
       ddl-auto: create
@@ -16,6 +14,14 @@ spring:
     properties:
       hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
       hibernate.id.new_generator_mappings: false
+  datasource:
+    hikari:
+      allow-pool-suspension: true
+    url: jdbc:postgresql://localhost:5432/database
+    username: builduser
+    password: buildpw
+    driver-class-name: org.postgresql.Driver
+    continue-on-error: true
 
 management:
   endpoints:
@@ -24,3 +30,12 @@ management:
         include:
           - refresh
           - env
+
+logging:
+  level:
+    org:
+      springframework:
+        context:
+          support:
+            DefaultLifecycleProcessor: debug
+
